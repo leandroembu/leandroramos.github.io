@@ -1,15 +1,14 @@
 ---
-layout:	"post"
-categories:	"blog"
-title:	"Software Livre, Software Proprietário e os anseios da comunidade ao longo dos anos"
-date:	2019-12-11
-thumbnail:	/img/0*fR59pMEKgqEjAf6V.jpg
-author:	
+layout: post
+title: >-
+  Software Livre, Software Proprietário e os anseios da comunidade ao longo dos
+  anos
+author: john_doe
+date: 2019-12-11T00:00:00.000Z
+intro_paragraph: '![Ubuntu 4.10](/assets/img/uploads/ubuntu4.jpg "Ubuntu 4.10")'
+categories: blog
 ---
-
-* * *
-
-![](/img/0*fR59pMEKgqEjAf6V.jpg)
+- - -
 
 Primeiro lançamento do Ubuntu -- 4.10 Warty Warthog
 
@@ -42,7 +41,7 @@ temos uma palavra que nao significa o mesmo que "gratis").
 Nessa epoca, tinhamos mais _hardwares_ que funcionavam com _software_ livre,
 inclusive os adaptadores _wireless_ e processadores que n ao precisavam do
 _microcode_ propriet ario. Basta fazer uma busca por ano aqui --
-[https://h-node.org](https://t.co/etEoQvtxaQ?amp=1 "https://h-node.org/") -- e
+[https://h-node.org](https://t.co/etEoQvtxaQ?amp=1 "https\://h-node.org/") -- e
 ver quando tinhamos mais opçoes.
 
 Vejam uma busca por adaptadores _wireless_ que funcionam em sistemas livres,
@@ -77,7 +76,7 @@ precisa concordar com suas licenças, que muitas vezes aparecem como EULA
 (voces ja viram isso, eu sei). Alguns exemplos de _freewares_ atuais s ao WPS
 Office Community, FreeOffice, Visual Studio Code*, Google Chrome, etc.
 
-*Se quiserem entender sobre a diferença das licenças entre o Visual Studio Code e o Code OSS (base do VSCode), vejam [aqui](https://code.visualstudio.com/docs/supporting/faq).
+\*Se quiserem entender sobre a diferença das licenças entre o Visual Studio Code e o Code OSS (base do VSCode), vejam [aqui](https://code.visualstudio.com/docs/supporting/faq).
 
 Apos o desvio para falar sobre os _freewares_ , vou retomar o fio da meada.
 
@@ -104,7 +103,7 @@ para seus _hardwares_ funcionarem, e eu n ao vejo (se tiver, eu ainda nao vi)
 um movimento reclamando pela abertura de _firmwares_ , tornando-os livres, ou
 pela nao necessidade de _firmware_ algum para que um simples adaptador
 _wireless_ funcione sem nada propriet ario. Um exemplo de _hardware_ que
-depende do _firmware_ propriet ario e a minha placa _wireless  _-- Intel 7265,
+depende do _firmware_ propriet ario e a minha placa _wireless_  -- Intel 7265,
 ela nao funciona sem _firmware_ propriet ario, e muita gente acha que e livre
 porque funciona "de primeira" na maioria das distribuiçoes Linux -- mas essas
 distribuiçoes trazem o _firmware nonfree_ no seu instalador, para que o usu
@@ -150,7 +149,7 @@ ario** (tema de um futuro post).
 Essa mudança de direçao, ou mudança nos anseios da comunidade Linux, pode ter
 vindo de varios lugares, entao e uma questao que deixo aqui para voces. Mas
 vou mostrar uma delas, vejam o anuncio do primeiro lançamento do Ubuntu, o
-4.10 Warty Warthog [aqui](https://lists.ubuntu.com/archives/ubuntu-
+4.10 Warty Warthog \[aqui](https://lists.ubuntu.com/archives/ubuntu-
 announce/2004-October/000003.html).
 
 ![](/img/1*mGdHhOEF74wWoWrJgKWnHw.png)
@@ -160,7 +159,7 @@ Anuncio do Ubuntu 4.10, primeiro lançamento do Ubuntu
 Destaquei um trecho da imagem acima:
 
 > Absolutamente comprometido com software livre, todo programa para o usuario
-final, no CD, e software livre.
+> final, no CD, e software livre.
 
 E quem acompanha a historia do Ubuntu sabe que isso mudou (e muito) na decada
 atual. Claro que tem justificativa: trazendo software proprietario no seu (CD)
@@ -201,4 +200,3 @@ kernel livre rodando um monte de coisas que nao sabemos de onde vem, como sao
 feitas e nem o que fazem com nossos dados.
 
 Muito obrigado pela leitura. Ate a proxima, pessoal!
-

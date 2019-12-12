@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Criando um swapfile no Linux</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Criando um swapfile no Linux</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Link para o vídeo (na prática): https://youtu.be/mjq1_oq4SN8
+</section>
+<section data-field="body" class="e-content">
+<section name="a96f" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7d27" id="7d27" class="graf graf--h3 graf--leading graf--title">Criando um swapfile no Linux</h3><p name="b78d" id="b78d" class="graf graf--p graf-after--h3">Link para o vídeo (na prática): <a href="https://youtu.be/mjq1_oq4SN8" data-href="https://youtu.be/mjq1_oq4SN8" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">https://youtu.be/mjq1_oq4SN8</a></p><p name="d7db" id="d7db" class="graf graf--p graf-after--p">Muitas distribuições Linux, entre elas o Ubuntu, estão usando arquivos de troca (swap files) ao invés de uma partição dedicada a isso.</p><p name="a02b" id="a02b" class="graf graf--p graf-after--p">Muitas pessoas, dependendo do hardware e do uso da máquina, não precisam sequer usar swap — é o meu caso em uma de minhas máquinas.</p><p name="811d" id="811d" class="graf graf--p graf-after--p">Nas máquinas em que uso swap, optei pelo arquivo de swap por algumas razões:</p><ul class="postList"><li name="8459" id="8459" class="graf graf--li graf-after--p">Possibilidade de aumentar/reduzir o tamanho do swap</li><li name="3fd1" id="3fd1" class="graf graf--li graf-after--li">Possibilidade de deletar o arquivo de swap caso não deseje mais usar</li><li name="82c9" id="82c9" class="graf graf--li graf-after--li">Possibilidade de transferir o arquivo de swap para outro disco ou partição, caso julgue necessário</li></ul><p name="0863" id="0863" class="graf graf--p graf-after--li graf--trailing">Deixando o papo de lado, vamos aos passos para criar o swapfile.</p></div></div></section><section name="3b1f" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h4 name="c86a" id="c86a" class="graf graf--h4 graf--leading">1- Meu cenário atual</h4><pre name="5d3e" id="5d3e" class="graf graf--pre graf-after--h4">leandro@debian:~$ lsblk <br>NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT<br>sda      8:0    0 111,8G  0 disk <br>├─sda1   8:1    0   524M  0 part /boot/efi<br>└─sda2   8:2    0 111,3G  0 part /<br>sdb      8:16   0 931,5G  0 disk <br>└─sdb1   8:17   0 931,5G  0 part /storage</pre><p name="22fd" id="22fd" class="graf graf--p graf-after--pre">No cenário acima, eu não possuo partição de swap, e possuo um HD secundário de 1TB, que é onde vou colocar meu arquivo de troca. Você pode colocar o seu em qualquer lugar que desejar, não precisa ter um disco extra para isso.</p><h4 name="2872" id="2872" class="graf graf--h4 graf-after--p">2- Criando o arquivo de troca</h4><p name="fa60" id="fa60" class="graf graf--p graf-after--h4">Vou usar o fallocate, que aloca um espaço de disco para um arquivo:</p><pre name="81da" id="81da" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">sudo fallocate -l 8G /storage/arquivo-de-troca</code></pre><p name="131c" id="131c" class="graf graf--p graf-after--pre">Se você não tiver o fallocate instalado:</p><pre name="7467" id="7467" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">sudo dd if=/dev/zero of=/storage/arquivo-de-troca bs=1024 count=</code>8388608</pre><p name="ebc5" id="ebc5" class="graf graf--p graf-after--pre">P.S.: O caminho do arquivo e o tamanho são de sua escolha.</p><h4 name="8b62" id="8b62" class="graf graf--h4 graf-after--p">3- Formatando o arquivo de troca</h4><pre name="30fc" id="30fc" class="graf graf--pre graf-after--h4">sudo mkswap /storage/arquivo-de-troca</pre><h4 name="f314" id="f314" class="graf graf--h4 graf-after--pre">4- “Ligando” o swap no arquivo criado</h4><pre name="5f77" id="5f77" class="graf graf--pre graf-after--h4">sudo swapon /storage/arquivo-de-troca</pre><h4 name="36c6" id="36c6" class="graf graf--h4 graf-after--pre">5- Verificando se o swap está ativo no sistema</h4><pre name="bcc8" id="bcc8" class="graf graf--pre graf-after--h4">sudo swapon --show</pre><p name="8608" id="8608" class="graf graf--p graf-after--pre">Com isso, você deverá ver seu arquivo de swap na saída do comando.</p><h4 name="500f" id="500f" class="graf graf--h4 graf-after--p">6- Permitindo leitura e escrita somente para o root</h4><p name="a24e" id="a24e" class="graf graf--p graf-after--h4">Tenha a certeza de que somente o root poderá ler e gravar o arquivo de troca</p><pre name="a316" id="a316" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">sudo chmod 600 /storage/arquivo-de-troca</code></pre><h4 name="9a48" id="9a48" class="graf graf--h4 graf-after--pre">7- Adicionando o arquivo de troca ao FSTAB</h4><p name="4a19" id="4a19" class="graf graf--p graf-after--h4">Para que o sistema inicie com o arquivo de swap montado e ativo, precisamos colocar a entrada em nossa tabela de sistemas de arquivos (fstab ou filesystems table). Edite o arquivo /etc/fstab em seu editor preferido, mas com permissões de root (ou sudo). Adicione a linha seguinte no final do arquivo (lembre-se de colocar o caminho correto para o seu arquivo):</p><pre name="9279" id="9279" class="graf graf--pre graf-after--p">/storage/arquivo-de-troca   none   swap  sw  0  0</pre><h4 name="7c19" id="7c19" class="graf graf--h4 graf-after--pre">8- Reinicie o sistema</h4><p name="1cff" id="1cff" class="graf graf--p graf-after--h4 graf--trailing">Para que suas mudanças tenham efeito, reinicie o sistema. Assim ele será iniciado montando o seu arquivo de swap e ativando o mesmo.</p></div></div></section><section name="849a" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h4 name="32d3" id="32d3" class="graf graf--h4 graf--leading">Conclusão</h4><p name="13a5" id="13a5" class="graf graf--p graf-after--h4">Criar um arquivo de swap não é tão difícil, e ainda proporciona um bom aprendizado sobre montagem de sistemas de arquivos que não são, necessariamente, unidades de disco ou partições — Você pode fazer isso para criar um arquivo ext4, por exemplo.</p><p name="6520" id="6520" class="graf graf--p graf-after--p">Se tiver alguma dúvida, por favor, comente. Eu não mostrei como desabilitar e excluir partições de swap, caso você tenha uma e queira trocar por swapfile, mas talvez eu faça outro artigo ou ajude nos comentários.</p><p name="baf3" id="baf3" class="graf graf--p graf-after--p graf--trailing">Obrigado pela leitura.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@leandroembu" class="p-author h-card">Leandro Ramos</a> on <a href="https://medium.com/p/838296fbcf3"><time class="dt-published" datetime="2018-09-16T17:54:10.380Z">September 16, 2018</time></a>.</p><p><a href="https://medium.com/@leandroembu/criando-um-swapfile-no-linux-838296fbcf3" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 12, 2019.</p></footer></article></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Virtualizando com virt-manager no Void Linux</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Virtualizando com virt-manager no Void Linux</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Depois de muito tempo eu voltei a usar o Void Linux no meu modesto notebook. Para recomeçar a falar sobre o sistema, farei um pequeno…
+</section>
+<section data-field="body" class="e-content">
+<section name="3450" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7a4d" id="7a4d" class="graf graf--h3 graf--leading graf--title">Virtualizando com virt-manager no Void Linux</h3><figure name="4317" id="4317" class="graf graf--figure graf--layoutOutsetLeft graf-after--h3"><div class="aspectRatioPlaceholder is-locked" style="max-width: 250px; max-height: 206px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 82.39999999999999%;"></div><img class="graf-image" data-image-id="1*um9UR4A8rTijEyT344eDqA.png" data-width="250" data-height="206" data-is-featured="true" src="https://cdn-images-1.medium.com/max/600/1*um9UR4A8rTijEyT344eDqA.png"></div></figure><p name="b7cf" id="b7cf" class="graf graf--p graf-after--figure graf--trailing">Depois de muito tempo eu voltei a usar o Void Linux no meu modesto notebook. Para recomeçar a falar sobre o sistema, farei um pequeno tutorial de instalação do Virt Manager, gerenciador de máquinas virtuais usando KVM ou qemu-kvm.</p></div></div></section><section name="2052" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h4 name="ab5f" id="ab5f" class="graf graf--h4 graf--leading">Instalando os pacotes necessários</h4><p name="1a37" id="1a37" class="graf graf--p graf-after--h4">Instale os pacotes virt-manager e qemu, pois as dependências necessárias já virão na instalação. Use o xbps-install para isso:</p><pre name="f8b2" id="f8b2" class="graf graf--pre graf-after--p">sudo xbps-install virt-manager qemu</pre><figure name="f6f3" id="f6f3" class="graf graf--figure graf-after--pre"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 173px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 24.7%;"></div><img class="graf-image" data-image-id="1*an89SxNucU8Bbm8JoZKYaA.png" data-width="729" data-height="180" src="https://cdn-images-1.medium.com/max/800/1*an89SxNucU8Bbm8JoZKYaA.png"></div><figcaption class="imageCaption">Instalação dos pacotes necessários</figcaption></figure><h4 name="b128" id="b128" class="graf graf--h4 graf-after--figure">Habilitando e iniciando os serviços</h4><p name="07a6" id="07a6" class="graf graf--p graf-after--h4">Inicie os três serviços necessários para o uso do virt-manager</p><pre name="e2a3" id="e2a3" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">sudo ln -s /etc/sv/libvirtd /var/service<br>sudo ln -s /etc/sv/virtlockd /var/service<br>sudo ln -s /etc/sv/virtlogd /var/service</code></pre><h4 name="512c" id="512c" class="graf graf--h4 graf-after--pre">Verificando o status dos serviços</h4><pre name="5481" id="5481" class="graf graf--pre graf-after--h4">sudo sv status libvirtd <br>sudo sv status virtlogd <br>sudo sv status virtlockd</pre><figure name="51dd" id="51dd" class="graf graf--figure graf-after--pre"><div class="aspectRatioPlaceholder is-locked" style="max-width: 695px; max-height: 248px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 35.699999999999996%;"></div><img class="graf-image" data-image-id="1*6UUSB0GYIOXRD8yXbLhViw.png" data-width="695" data-height="248" src="https://cdn-images-1.medium.com/max/800/1*6UUSB0GYIOXRD8yXbLhViw.png"></div><figcaption class="imageCaption">Status dos serviços de virtualização</figcaption></figure><h4 name="8c7c" id="8c7c" class="graf graf--h4 graf-after--figure">Criando a primeira máquina virtual</h4><p name="b149" id="b149" class="graf graf--p graf-after--h4">Abra o programa virt-manager e clique no botão + para adicionar uma máquina virtual</p><figure name="d824" id="d824" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 552px; max-height: 575px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 104.2%;"></div><img class="graf-image" data-image-id="1*HrcWhqvfRiV1YLmloLtv3Q.png" data-width="552" data-height="575" src="https://cdn-images-1.medium.com/max/800/1*HrcWhqvfRiV1YLmloLtv3Q.png"></div><figcaption class="imageCaption">Tela principal do virt-manager</figcaption></figure><figure name="ceca" id="ceca" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 525px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 104.60000000000001%;"></div><img class="graf-image" data-image-id="1*BDXs8aYm1y08j-GlzbnkJA.png" data-width="502" data-height="525" src="https://cdn-images-1.medium.com/max/800/1*BDXs8aYm1y08j-GlzbnkJA.png"></div><figcaption class="imageCaption">Adicionando uma máquina virtual</figcaption></figure><figure name="0196" id="0196" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 525px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 104.60000000000001%;"></div><img class="graf-image" data-image-id="1*BcgmvY4H4X1z8fxC8MLUgQ.png" data-width="502" data-height="525" src="https://cdn-images-1.medium.com/max/800/1*BcgmvY4H4X1z8fxC8MLUgQ.png"></div><figcaption class="imageCaption">Clique em “Navegar” para escolher o arquivo ISO</figcaption></figure><figure name="4ffe" id="4ffe" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 489px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 69.8%;"></div><img class="graf-image" data-image-id="1*6M6sJKZSGL7G6dcMxGnRWg.png" data-width="752" data-height="525" src="https://cdn-images-1.medium.com/max/800/1*6M6sJKZSGL7G6dcMxGnRWg.png"></div><figcaption class="imageCaption">Em “Navegar Localmente”, procure a pasta onde está o arquivo ISO desejado</figcaption></figure><figure name="9cec" id="9cec" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 525px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 104.60000000000001%;"></div><img class="graf-image" data-image-id="1*6_KPIO8a39EgwTqx5UEeQA.png" data-width="502" data-height="525" src="https://cdn-images-1.medium.com/max/800/1*6_KPIO8a39EgwTqx5UEeQA.png"></div><figcaption class="imageCaption">Selecione o sistema desejado. Caso não o encontre na lista, escolha Generic</figcaption></figure><figure name="1f7f" id="1f7f" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 525px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 104.60000000000001%;"></div><img class="graf-image" data-image-id="1*4vA4L-HeAVbwv9jf_wzNIw.png" data-width="502" data-height="525" src="https://cdn-images-1.medium.com/max/800/1*4vA4L-HeAVbwv9jf_wzNIw.png"></div><figcaption class="imageCaption">Alocação de memória em MB e núcleos do processador</figcaption></figure><p name="066d" id="066d" class="graf graf--p graf-after--figure">Os discos virtuais ficam, por padrão, no diretório /var. Se você possui a partição /home separada, indique o caminho personalizado no campo de texto.</p><figure name="a94b" id="a94b" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 525px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 104.60000000000001%;"></div><img class="graf-image" data-image-id="1*kz9PKEUbGbNK-ZvKWkeg7Q.png" data-width="502" data-height="525" src="https://cdn-images-1.medium.com/max/800/1*kz9PKEUbGbNK-ZvKWkeg7Q.png"></div><figcaption class="imageCaption">Indique o tamanho do disco virtual</figcaption></figure><figure name="cf4f" id="cf4f" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 502px; max-height: 525px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 104.60000000000001%;"></div><img class="graf-image" data-image-id="1*o-R_Kqz3NVpb_YEqT9St0A.png" data-width="502" data-height="525" src="https://cdn-images-1.medium.com/max/800/1*o-R_Kqz3NVpb_YEqT9St0A.png"></div><figcaption class="imageCaption">Dê um nome à máquina virtual e marque a opção “Personalizar a configuração antes da instalação”</figcaption></figure><p name="68c6" id="68c6" class="graf graf--p graf-after--figure">Em “CPUs”, marque a opção “Copiar configuração da CPU do host”, é a melhor opção se você for iniciante.</p><figure name="79f2" id="79f2" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 547px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 78.10000000000001%;"></div><img class="graf-image" data-image-id="1*WEuP0Og2BUsqlR0IAOZgeA.png" data-width="835" data-height="652" src="https://cdn-images-1.medium.com/max/800/1*WEuP0Og2BUsqlR0IAOZgeA.png"></div><figcaption class="imageCaption">Opções gerais da máquina virtual</figcaption></figure><h4 name="ad38" id="ad38" class="graf graf--h4 graf-after--figure">Iniciando a instalação da máquina virtual</h4><p name="db28" id="db28" class="graf graf--p graf-after--h4">Após as configurações da máquina, clique em “Iniciar Instalação”. Nos próximos artigos (ou vídeos acompanhados de artigos) eu falarei mais sobre o virt-manager.</p><figure name="d493" id="d493" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 502px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 71.7%;"></div><img class="graf-image" data-image-id="1*SDna6trRfU1s38htWl_OQw.png" data-width="1025" data-height="735" src="https://cdn-images-1.medium.com/max/800/1*SDna6trRfU1s38htWl_OQw.png"></div><figcaption class="imageCaption">Live system do Kubuntu 18.04 rodando no virt-manager do Void Linux</figcaption></figure><p name="0aae" id="0aae" class="graf graf--p graf-after--figure graf--trailing">Obrigado pela leitura. Até a próxima, pessoal!</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@leandroembu" class="p-author h-card">Leandro Ramos</a> on <a href="https://medium.com/p/7c85e24edc46"><time class="dt-published" datetime="2019-10-19T23:50:48.215Z">October 19, 2019</time></a>.</p><p><a href="https://medium.com/@leandroembu/virtualizando-com-virt-manager-no-void-linux-7c85e24edc46" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 12, 2019.</p></footer></article></body></html>

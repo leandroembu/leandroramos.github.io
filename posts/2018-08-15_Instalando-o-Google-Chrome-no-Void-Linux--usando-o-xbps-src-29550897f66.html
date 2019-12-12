@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Instalando o Google Chrome no Void Linux, usando o xbps-src</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Instalando o Google Chrome no Void Linux, usando o xbps-src</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+O Void Linux possui uma ferramenta para criação de pacotes a partir de binários de terceiros, e também a partir de códigos-fonte, chamada…
+</section>
+<section data-field="body" class="e-content">
+<section name="5158" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="b967" id="b967" class="graf graf--h3 graf--leading graf--title">Instalando o Google Chrome no Void Linux, usando o xbps-src</h3><figure name="5113" id="5113" class="graf graf--figure graf--layoutOutsetLeft graf-after--h3"><div class="aspectRatioPlaceholder is-locked" style="max-width: 250px; max-height: 206px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 82.39999999999999%;"></div><img class="graf-image" data-image-id="1*VjwiqZEHKgI0EcS4hDvfHA.png" data-width="250" data-height="206" src="https://cdn-images-1.medium.com/max/600/1*VjwiqZEHKgI0EcS4hDvfHA.png"></div></figure><p name="421c" id="421c" class="graf graf--p graf-after--figure graf--trailing">O Void Linux possui uma ferramenta para criação de pacotes a partir de binários de terceiros, e também a partir de códigos-fonte, chamada <a href="https://wiki.voidlinux.eu/Xbps-src" data-href="https://wiki.voidlinux.eu/Xbps-src" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">xbps-src</a>, que se assemelha aos Slackbuilds do Slackware, PKGBUILD do Archlinux e EBUILD do Gentoo. Neste artigo vou mostrar como começar a usar os xbps-src, usando o Google Chrome como exemplo.</p></div></div></section><section name="40ff" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="8cbf" id="8cbf" class="graf graf--h3 graf--leading">Requisitos:</h3><p name="7de1" id="7de1" class="graf graf--p graf-after--h3">Precisamos instalar algumas dependências antes de usarmos o xbps-src:</p><pre name="be0d" id="be0d" class="graf graf--pre graf-after--p">sudo xbps-install git base-devel xtools</pre><h3 name="8e24" id="8e24" class="graf graf--h3 graf-after--pre">Clone do repositório void-packages:</h3><pre name="0b11" id="0b11" class="graf graf--pre graf-after--h3">git clone https://github.com/void-linux/void-packages</pre><h3 name="db25" id="db25" class="graf graf--h3 graf-after--pre">Instalação do bynary-bootstrap</h3><p name="64f7" id="64f7" class="graf graf--p graf-after--h3">Para trabalhar com os templates do xbps-src (pode conferí-los na pasta ~/void-packages/srcpkgs/nomeDoPacote/template), precisamos configurar o binary-bootstrap:</p><pre name="589d" id="589d" class="graf graf--pre graf-after--p">cd void-packages<br>./xbps-src binary-bootstrap</pre><p name="7445" id="7445" class="graf graf--p graf-after--pre">Também precisamos permitir pacotes restritos (para o caso do Google Chrome):</p><pre name="06d4" id="06d4" class="graf graf--pre graf-after--p">echo XBPS_ALLOW_RESTRICTED=yes &gt;&gt; ~/void-packages/etc/conf</pre><h3 name="3808" id="3808" class="graf graf--h3 graf-after--pre">Construindo o pacote .xbps</h3><p name="92b0" id="92b0" class="graf graf--p graf-after--h3">Agora podemos construir (build) nosso pacote .xbps:</p><pre name="c27f" id="c27f" class="graf graf--pre graf-after--p">./xbps-src pkg google-chrome</pre><p name="c340" id="c340" class="graf graf--p graf-after--pre">Reparem que o template utiliza o pacote .deb para construir nosso .xbps</p><h3 name="aadf" id="aadf" class="graf graf--h3 graf-after--p">Instalando o pacote</h3><p name="7395" id="7395" class="graf graf--p graf-after--h3">Finalmente, podemos instalar nosso pacote usando o xbps-install:</p><pre name="a9fd" id="a9fd" class="graf graf--pre graf-after--p">sudo xbps-install --repository=/home/seu-usuario/void-packages/hostdir/binpkgs/nonfree google-chrome</pre><p name="ee34" id="ee34" class="graf graf--p graf-after--pre">E pronto! Podemos usar o Google Chrome no Void, graças ao maravilhoso xbps-src.</p><p name="7cf3" id="7cf3" class="graf graf--p graf-after--p">Nos próximos artigos mostrarei como construir pacotes .xbps a partir de código-fonte e também como atualizar os pacotes instalados através do xbps-src.</p><p name="dd0c" id="dd0c" class="graf graf--p graf-after--p">Link para o screencast do tutorial: <a href="https://youtu.be/pk-HaPbw4vU" data-href="https://youtu.be/pk-HaPbw4vU" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">https://youtu.be/pk-HaPbw4vU</a></p><p name="3ba8" id="3ba8" class="graf graf--p graf-after--p graf--trailing">Até a próxima, pessoal!</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@leandroembu" class="p-author h-card">Leandro Ramos</a> on <a href="https://medium.com/p/29550897f66"><time class="dt-published" datetime="2018-08-15T19:11:10.577Z">August 15, 2018</time></a>.</p><p><a href="https://medium.com/@leandroembu/usando-o-xbps-src-no-void-linux-29550897f66" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 12, 2019.</p></footer></article></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Instalando o Apache Netbeans no Debian, Ubuntu e derivados</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Instalando o Apache Netbeans no Debian, Ubuntu e derivados</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Instalar o Apache Netbeans no Debian, Ubuntu e derivados é simples, mas ainda deixa muitos usuários em dúvida. Vou mostrar como fazer isso…
+</section>
+<section data-field="body" class="e-content">
+<section name="2495" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="cc76" id="cc76" class="graf graf--h3 graf--leading graf--title">Instalando o Apache Netbeans no Debian, Ubuntu e derivados</h3><p name="cde9" id="cde9" class="graf graf--p graf-after--h3">Instalar o Apache Netbeans no Debian, Ubuntu e derivados é simples, mas ainda deixa muitos usuários em dúvida. Vou mostrar como fazer isso em passos simples.</p><p name="0fa7" id="0fa7" class="graf graf--p graf-after--p">Para que isso funcione em qualquer distro baseada no Debian e em qualquer ambiente desktop, vou mostrar como fazer as coisas pelo terminal, mas você pode usar ferramentas como Synaptic, Muon ou MintInstall, por exemplo.</p><h4 name="0ce1" id="0ce1" class="graf graf--h4 graf-after--p">Instalando as dependências</h4><pre name="1e54" id="1e54" class="graf graf--pre graf-after--h4">sudo apt install openjdk-11-jdk</pre><h4 name="633d" id="633d" class="graf graf--h4 graf-after--pre">Faça o download do Apache Netbeans em sua última versão</h4><p name="911d" id="911d" class="graf graf--p graf-after--h4">Acesse a página de downloads em <a href="https://netbeans.apache.org/download/index.html" data-href="https://netbeans.apache.org/download/index.html" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://netbeans.apache.org/download/index.html</a></p><p name="8528" id="8528" class="graf graf--p graf-after--p">Clique no botão de download da última versão (quando escrevi o artigo era a versão 11.1)</p><figure name="4b20" id="4b20" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 377px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 53.900000000000006%;"></div><img class="graf-image" data-image-id="1*v8aTArhV_nYQRQtcQa5VkQ.png" data-width="1031" data-height="556" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*v8aTArhV_nYQRQtcQa5VkQ.png"></div><figcaption class="imageCaption">Página de downloads do Apache Netbeans</figcaption></figure><p name="f131" id="f131" class="graf graf--p graf-after--figure">Baixe o arquivo para Linux (o que tem a extensão .sh), na data do artigo era o link <a href="https://www.apache.org/dyn/closer.cgi/netbeans/netbeans/11.1/Apache-NetBeans-11.1-bin-linux-x64.sh" data-href="https://www.apache.org/dyn/closer.cgi/netbeans/netbeans/11.1/Apache-NetBeans-11.1-bin-linux-x64.sh" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">https://www.apache.org/dyn/closer.cgi/netbeans/netbeans/11.1/Apache-NetBeans-11.1-bin-linux-x64.sh</a></p><h4 name="b5a2" id="b5a2" class="graf graf--h4 graf-after--p">Dando permissão de execução ao instalador</h4><p name="8c9b" id="8c9b" class="graf graf--p graf-after--h4">Você pode fazer isso clicando com o botão direito do mouse no arquivo baixado -&gt; Propriedades -&gt; Permissões -&gt; Permitir execução como programa.</p><p name="0365" id="0365" class="graf graf--p graf-after--p">Ou, no terminal, na pasta onde está o arquivo:</p><pre name="4b1b" id="4b1b" class="graf graf--pre graf-after--p">chmod +x Apache-NetBeans-11.1-bin-linux-x64.sh</pre><h4 name="ff6f" id="ff6f" class="graf graf--h4 graf-after--pre">Instalando o Netbeans</h4><p name="d79b" id="d79b" class="graf graf--p graf-after--h4">Pelo gerenciador de arquivos, você pode simplesmente dar um clique duplo no arquivo e a instalação vai começar.</p><p name="363b" id="363b" class="graf graf--p graf-after--p">Pelo terminal, na pasta onde está o arquivo baixado:</p><pre name="cded" id="cded" class="graf graf--pre graf-after--p">./Apache-NetBeans-11.1-bin-linux-x64.sh</pre><p name="c868" id="c868" class="graf graf--p graf-after--pre">Obs.: Não se esqueça do ponto-barra ./ antes do nome do arquivo. Vou falar sobre isso no meu curso de terminal para iniciantes, no meu <a href="https://www.youtube.com/playlist?list=PLIFOx3X8xDuuoDoE7hHglfooiQ70Xi1ot" data-href="https://www.youtube.com/playlist?list=PLIFOx3X8xDuuoDoE7hHglfooiQ70Xi1ot" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">canal no YouTube</a></p><figure name="5c80" id="5c80" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 605px; max-height: 105px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 17.4%;"></div><img class="graf-image" data-image-id="1*0MfFwS6_5hJXRrvPPrJZVQ.png" data-width="605" data-height="105" src="https://cdn-images-1.medium.com/max/800/1*0MfFwS6_5hJXRrvPPrJZVQ.png"></div><figcaption class="imageCaption">Comando para executar o instalador</figcaption></figure><figure name="19ef" id="19ef" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 442px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 63.1%;"></div><img class="graf-image" data-image-id="1*OoTqGTH6ZrBHM_a5To49IA.png" data-width="1002" data-height="632" src="https://cdn-images-1.medium.com/max/800/1*OoTqGTH6ZrBHM_a5To49IA.png"></div><figcaption class="imageCaption">Primeira tela do instalador</figcaption></figure><figure name="4ac6" id="4ac6" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 600px; max-height: 500px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 83.3%;"></div><img class="graf-image" data-image-id="1*gThYtBH1nsn1xQZZC7HgJQ.png" data-width="600" data-height="500" src="https://cdn-images-1.medium.com/max/800/1*gThYtBH1nsn1xQZZC7HgJQ.png"></div><figcaption class="imageCaption">Aceitando os termos da licença</figcaption></figure><figure name="547f" id="547f" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 600px; max-height: 500px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 83.3%;"></div><img class="graf-image" data-image-id="1*QiPWwmBq-Oz1gKNfuTaIBg.png" data-width="600" data-height="500" src="https://cdn-images-1.medium.com/max/800/1*QiPWwmBq-Oz1gKNfuTaIBg.png"></div><figcaption class="imageCaption">Selecionando a pasta de instalação e o ambiente Java</figcaption></figure><figure name="bca0" id="bca0" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 600px; max-height: 500px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 83.3%;"></div><img class="graf-image" data-image-id="1*uJgvL4gWJknNIbfo-IKPMQ.png" data-width="600" data-height="500" src="https://cdn-images-1.medium.com/max/800/1*uJgvL4gWJknNIbfo-IKPMQ.png"></div><figcaption class="imageCaption">Iniciando a instalação do Apache Netbeans</figcaption></figure><figure name="af39" id="af39" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 600px; max-height: 500px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 83.3%;"></div><img class="graf-image" data-image-id="1*GcwbwptgUxOQdYQw191yhg.png" data-width="600" data-height="500" src="https://cdn-images-1.medium.com/max/800/1*GcwbwptgUxOQdYQw191yhg.png"></div><figcaption class="imageCaption">Agora basta aguardar o fim da instalação</figcaption></figure><p name="081f" id="081f" class="graf graf--p graf-after--figure">Após a instalação, o Apache Netbeans estará no menu do seu sistema.</p><h4 name="e7f4" id="e7f4" class="graf graf--h4 graf-after--p">Desinstalando o Apache Netbeans</h4><p name="88f2" id="88f2" class="graf graf--p graf-after--h4">Abra o terminal na pasta onde está a instalação Apache Netbeans</p><figure name="2804" id="2804" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 492px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 70.3%;"></div><img class="graf-image" data-image-id="1*ljYo0ZmU3NOCxQHwGxLa1g.png" data-width="826" data-height="581" src="https://cdn-images-1.medium.com/max/800/1*ljYo0ZmU3NOCxQHwGxLa1g.png"></div><figcaption class="imageCaption">Abrindo o terminal na pasta do Netbeans</figcaption></figure><p name="62b8" id="62b8" class="graf graf--p graf-after--figure">Ou, pelo terminal:</p><pre name="874f" id="874f" class="graf graf--pre graf-after--p">cd ~/netbeans-11.1</pre><p name="aece" id="aece" class="graf graf--p graf-after--pre">Depois execute o desinstalador:</p><pre name="07fe" id="07fe" class="graf graf--pre graf-after--p">./uninstall.sh</pre><figure name="979b" id="979b" class="graf graf--figure graf-after--pre"><div class="aspectRatioPlaceholder is-locked" style="max-width: 562px; max-height: 110px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 19.6%;"></div><img class="graf-image" data-image-id="1*Ns57aTAN2oLKj7oGvQAogw.png" data-width="562" data-height="110" src="https://cdn-images-1.medium.com/max/800/1*Ns57aTAN2oLKj7oGvQAogw.png"></div><figcaption class="imageCaption">Comando para desinstalar o programa</figcaption></figure><figure name="edc5" id="edc5" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 600px; max-height: 500px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 83.3%;"></div><img class="graf-image" data-image-id="1*DvRwZaL8vn0jjNRxT5fBZQ.png" data-width="600" data-height="500" src="https://cdn-images-1.medium.com/max/800/1*DvRwZaL8vn0jjNRxT5fBZQ.png"></div><figcaption class="imageCaption">Confirmar a desinstalação</figcaption></figure><figure name="9ce3" id="9ce3" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 600px; max-height: 500px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 83.3%;"></div><img class="graf-image" data-image-id="1*j795OXLL_COHB5q6L0XRaA.png" data-width="600" data-height="500" src="https://cdn-images-1.medium.com/max/800/1*j795OXLL_COHB5q6L0XRaA.png"></div><figcaption class="imageCaption">Aguarde o fim do processo de desinstalação</figcaption></figure><p name="f119" id="f119" class="graf graf--p graf-after--figure graf--trailing">Obrigado pela leitura, até a próxima, pessoal!</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@leandroembu" class="p-author h-card">Leandro Ramos</a> on <a href="https://medium.com/p/5bba9c5dfc1d"><time class="dt-published" datetime="2019-09-21T16:22:12.615Z">September 21, 2019</time></a>.</p><p><a href="https://medium.com/@leandroembu/instalando-o-apache-netbeans-no-debian-ubuntu-e-derivados-5bba9c5dfc1d" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 12, 2019.</p></footer></article></body></html>

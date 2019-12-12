@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Testando relacionamentos com o Laravel Tinker</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Testando relacionamentos com o Laravel Tinker</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Se quiserem me doar um café pelo PagSeguro do UOL: https://pag.ae/7Vu8Tt-pn
+</section>
+<section data-field="body" class="e-content">
+<section name="2550" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="d8ac" id="d8ac" class="graf graf--h3 graf--leading graf--title">Testando relacionamentos com o Laravel Tinker</h3><figure name="72db" id="72db" class="graf graf--figure graf-after--h3"><div class="aspectRatioPlaceholder is-locked" style="max-width: 644px; max-height: 165px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 25.6%;"></div><img class="graf-image" data-image-id="1*my5GxEYdzcv2PHtiPPosSg.png" data-width="644" data-height="165" src="https://cdn-images-1.medium.com/max/800/1*my5GxEYdzcv2PHtiPPosSg.png"></div><figcaption class="imageCaption">Shell interativo do Laravel</figcaption></figure><p name="e10e" id="e10e" class="graf graf--p graf-after--figure">Se quiserem me doar um café pelo PagSeguro do UOL: <a href="https://pag.ae/7Vu8Tt-pn" data-href="https://pag.ae/7Vu8Tt-pn" class="markup--anchor markup--p-anchor" rel="noopener nofollow noopener" target="_blank">https://pag.ae/7Vu8Tt-pn</a></p><p name="2c27" id="2c27" class="graf graf--p graf-after--p">O Tinker é um console interativo do Laravel, um shell do PHP com acesso às classes do nosso projeto. Uma das coisas que mais gosto de fazer no Tinker é testar meus relacionamentos e queries no banco de dados. Para fazer uma pequena demonstração, é bom começarmos pelo começo, desde a criação do projeto.</p><p name="4108" id="4108" class="graf graf--p graf-after--p">Nosso super projeto de controle de vendas terá duas tabelas no banco de dados, com um relacionamento 1:n</p><figure name="f285" id="f285" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 311px; max-height: 152px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 48.9%;"></div><img class="graf-image" data-image-id="1*mbjMDKylYYQcyQvwvXhKzg.png" data-width="311" data-height="152" src="https://cdn-images-1.medium.com/max/800/1*mbjMDKylYYQcyQvwvXhKzg.png"></div><figcaption class="imageCaption">Poucos campos. O suficiente para brincarmos com o Tinker.</figcaption></figure><p name="1d0d" id="1d0d" class="graf graf--p graf-after--figure">Primeiro, crie um banco de dados (no SGBD de sua preferência), depois crie o projeto:</p><pre name="9567" id="9567" class="graf graf--pre graf-after--p">composer create-project laravel/laravel sales --prefer-dist</pre><p name="8aad" id="8aad" class="graf graf--p graf-after--pre">Crie os models necessários (a opção -mf é para que também sejam gerados migration e factory para os models):</p><pre name="2f69" id="2f69" class="graf graf--pre graf-after--p">php artisan make:model Seller -mf<br>php artisan make:model Sale -mf</pre><p name="3b8a" id="3b8a" class="graf graf--p graf-after--pre">Abra a migration database/migrations/***create_sellers_table.php (*** significa um monte de números que indicam a hora em que a migration foi criada). Deixe o método up com o seguinte código:</p><pre name="41f3" id="41f3" class="graf graf--pre graf-after--p">public function up()<br>{<br>    Schema::create(&#39;sellers&#39;, function (Blueprint $table) {<br>        $table-&gt;increments(&#39;id&#39;);<br>        $table-&gt;string(&#39;name&#39;);<br>        $table-&gt;string(&#39;email&#39;);<br>        $table-&gt;timestamps();<br>    });<br>}</pre><p name="8c39" id="8c39" class="graf graf--p graf-after--pre">Faça o mesmo com a migration database/migrations/***create_sales_table.php:</p><pre name="11e5" id="11e5" class="graf graf--pre graf-after--p">public function up()<br>{<br>    Schema::create(&#39;sales&#39;, function (Blueprint $table) {<br>        $table-&gt;increments(&#39;id&#39;);<br>        $table-&gt;integer(&#39;price&#39;);<br>        $table-&gt;integer(&#39;seller_id&#39;)-&gt;unsigned();<br>        $table-&gt;timestamps();</pre><pre name="c759" id="c759" class="graf graf--pre graf-after--pre">        /** Abaixo vai a chave estrangeira<br>          * do nosso relacionamento<br>          */</pre><pre name="6401" id="6401" class="graf graf--pre graf-after--pre">        $table-&gt;foreign(&#39;seller_id&#39;)<br>              -&gt;references(&#39;id&#39;)<br>              -&gt;on(&#39;sellers&#39;);<br>        });<br>    }</pre><p name="263e" id="263e" class="graf graf--p graf-after--pre">Agora você pode migrar o banco de dados:</p><pre name="6706" id="6706" class="graf graf--pre graf-after--p">php artisan migrate</pre><p name="8b00" id="8b00" class="graf graf--p graf-after--pre">Agora faça alguns ajustes nos models, para configurar o nosso relacionamento um-para-muitos:</p><p name="dd10" id="dd10" class="graf graf--p graf-after--p">Deixe o arquivo app/Sale.php com o seguinte código:</p><pre name="c44c" id="c44c" class="graf graf--pre graf-after--p">&lt;?php</pre><pre name="305d" id="305d" class="graf graf--pre graf-after--pre">namespace App;</pre><pre name="2edc" id="2edc" class="graf graf--pre graf-after--pre">use Illuminate\Database\Eloquent\Model;</pre><pre name="e35a" id="e35a" class="graf graf--pre graf-after--pre">class Sale extends Model<br>{<br>    public function seller()<br>    {<br>        return $this-&gt;belongsTo(&#39;App\Seller&#39;);<br>    }<br>}</pre><pre name="bf60" id="bf60" class="graf graf--pre graf-after--pre">/* o belongsTo usado acima informa que cada venda (sale) pertence a um vendedor (seller) */</pre><p name="cf60" id="cf60" class="graf graf--p graf-after--pre">Deixe o arquivo app/Seller.php com o seguinte código:</p><pre name="1b61" id="1b61" class="graf graf--pre graf-after--p">&lt;?php</pre><pre name="0c1f" id="0c1f" class="graf graf--pre graf-after--pre">namespace App;</pre><pre name="1c81" id="1c81" class="graf graf--pre graf-after--pre">use Illuminate\Database\Eloquent\Model;</pre><pre name="9d23" id="9d23" class="graf graf--pre graf-after--pre">class Seller extends Model<br>{<br>    public function sales()<br>    {<br>        return $this-&gt;hasMany(&#39;App\Sale&#39;);<br>    }<br>}<br>/* O hasMany acima informa que nosso vendedor (seller) pode possuir uma ou mais vendas (sales) */</pre><p name="0639" id="0639" class="graf graf--p graf-after--pre">As classes acima, basicamente, dizem que uma Sale (venda) pertence a um Seller (vendedor), através do método seller() - e um Seller (vendedor) pode possuir várias Sales (vendas), através do método sales().</p><p name="1cd0" id="1cd0" class="graf graf--p graf-after--p">Agora já podemos usar o Tinker para algumas operações com nossas classes, digite no terminal:</p><pre name="b800" id="b800" class="graf graf--pre graf-after--p">php artisan tinker</pre><p name="ef32" id="ef32" class="graf graf--p graf-after--pre">Com o tinker aberto, vamos criar um vendedor:</p><pre name="5155" id="5155" class="graf graf--pre graf-after--p">&gt;&gt;&gt; $seller = new Seller<br>&gt;&gt;&gt; $seller-&gt;name = &quot;John Doe&quot;<br>&gt;&gt;&gt; $seller-&gt;email = &quot;john.doe@foo.bar&quot;<br>&gt;&gt;&gt; $seller-&gt;save()</pre><p name="7d83" id="7d83" class="graf graf--p graf-after--pre">Verifique se os dados estão gravados no banco de dados:</p><pre name="356a" id="356a" class="graf graf--pre graf-after--p">&gt;&gt;&gt; Seller::all()<br>=&gt; Illuminate\Database\Eloquent\Collection {#748<br>     all: [<br>       App\Seller {#749<br>         id: 1,<br>         name: &quot;John Doe&quot;,<br>         email: &quot;john.doe@foo.bar&quot;,<br>         created_at: &quot;2018-02-06 17:48:08&quot;,<br>         updated_at: &quot;2018-02-06 17:48:08&quot;,<br>       },<br>     ],<br>   }<br>&gt;&gt;&gt;</pre><p name="31d9" id="31d9" class="graf graf--p graf-after--pre">Com nosso vendedor gravado, sabemos que seu ID é 1 (no meu caso, no seu pode ser outro ID). Vamos cadastrar duas vendas para o nosso vendedor:</p><pre name="6928" id="6928" class="graf graf--pre graf-after--p">&gt;&gt;&gt; $sale1 = new Sale<br>&gt;&gt;&gt; $sale2 = new Sale<br>&gt;&gt;&gt; <br>&gt;&gt;&gt; $sale1-&gt;price = 13699<br>&gt;&gt;&gt; $sale1-&gt;seller_id = 1<br>&gt;&gt;&gt; $sale2-&gt;price = 30000<br>&gt;&gt;&gt; $sale2-&gt;seller_id = 1<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; $sale1-&gt;save()<br>&gt;&gt;&gt; $sale2-&gt;save()</pre><p name="549d" id="549d" class="graf graf--p graf-after--pre">Agora que temos nosso vendedor gravado, com suas duas vendas, você pode fazer algumas consultas interessantes, faça algumas consultas e diga o que achou do Tinker.</p><pre name="fe51" id="fe51" class="graf graf--pre graf-after--p">/* todas as vendas do vendedor */</pre><pre name="3af9" id="3af9" class="graf graf--pre graf-after--pre">&gt;&gt;&gt; $seller-&gt;sales<br>=&gt; Illuminate\Database\Eloquent\Collection {#737<br>     all: [<br>       App\Sale {#747<br>         id: 1,<br>         price: 16499,<br>         seller_id: 1,<br>         created_at: &quot;2018-02-06 17:58:35&quot;,<br>         updated_at: &quot;2018-02-06 17:58:35&quot;,<br>       },<br>       App\Sale {#745<br>         id: 2,<br>         price: 30000,<br>         seller_id: 1,<br>         created_at: &quot;2018-02-06 17:58:39&quot;,<br>         updated_at: &quot;2018-02-06 17:58:39&quot;,<br>       },<br>     ],<br>   }</pre><pre name="87d4" id="87d4" class="graf graf--pre graf-after--pre">/* Dados da segunda venda */<br>&gt;&gt;&gt; $sale = Sale::find(2)<br>=&gt; App\Sale {#753<br>     id: 2,<br>     price: 30000,<br>     seller_id: 1,<br>     created_at: &quot;2018-02-06 17:58:39&quot;,<br>     updated_at: &quot;2018-02-06 17:58:39&quot;,<br>   }</pre><pre name="092e" id="092e" class="graf graf--pre graf-after--pre">/* Para saber quem foi o vendedor da segunda venda */<br>&gt;&gt;&gt; $sale-&gt;seller-&gt;name<br>=&gt; &quot;John Doe&quot;</pre><p name="3b4d" id="3b4d" class="graf graf--p graf-after--pre">As operações acima são muito simples, claro. Mas o relacionamento nos poupa de importar muitas classes, e podemos usar coisas com HasManyThrough, que tornariam o artigo muito longo e cansativo.</p><p name="5e2d" id="5e2d" class="graf graf--p graf-after--p">Eu outro artigo, vou mostrar como usar as factories para popularmos nosso banco de dados de forma mais rápida.</p><p name="f06b" id="f06b" class="graf graf--p graf-after--p">Se quiser ver o código, testar, brincar, etc., siga o link para o branch “part1” no meu repositório sales: <a href="https://github.com/leandroramos/sales/tree/part1" data-href="https://github.com/leandroramos/sales/tree/part1" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://github.com/leandroramos/sales/tree/part1</a></p><p name="fbe6" id="fbe6" class="graf graf--p graf-after--p">Experimente o Laravel Tinker, e se quiser deixe sua opinião nos comentários. Obrigado pela leitura.</p><p name="8ffc" id="8ffc" class="graf graf--p graf-after--p">Para saber mais:</p><div name="006d" id="006d" class="graf graf--mixtapeEmbed graf-after--p graf--trailing"><a href="https://laravel.com/docs/5.4/eloquent-relationships" data-href="https://laravel.com/docs/5.4/eloquent-relationships" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://laravel.com/docs/5.4/eloquent-relationships"><strong class="markup--strong markup--mixtapeEmbed-strong">Eloquent: Relationships</strong><br><em class="markup--em markup--mixtapeEmbed-em">Database tables are often related to one another. For example, a blog post may have many comments, or an order could be…</em>laravel.com</a><a href="https://laravel.com/docs/5.4/eloquent-relationships" class="js-mixtapeImage mixtapeImage mixtapeImage--empty u-ignoreBlock" data-media-id="a1733a934fe72fbdcc9b029333fb056f"></a></div></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@leandroembu" class="p-author h-card">Leandro Ramos</a> on <a href="https://medium.com/p/cf1fe028608f"><time class="dt-published" datetime="2018-02-06T18:31:34.028Z">February 6, 2018</time></a>.</p><p><a href="https://medium.com/@leandroembu/testando-relacionamentos-com-o-laravel-tinker-cf1fe028608f" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 12, 2019.</p></footer></article></body></html>

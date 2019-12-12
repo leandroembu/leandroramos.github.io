@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>LAMP no Void Linux</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">LAMP no Void Linux</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Olá, pessoal. Beleza?
+</section>
+<section data-field="body" class="e-content">
+<section name="b24d" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7850" id="7850" class="graf graf--h3 graf--leading graf--title">LAMP no Void Linux</h3><figure name="961b" id="961b" class="graf graf--figure graf-after--h3"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 378px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 54%;"></div><img class="graf-image" data-image-id="1*-YNY3KLuXt6HIR7h-eIcow.jpeg" data-width="800" data-height="432" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*-YNY3KLuXt6HIR7h-eIcow.jpeg"></div><figcaption class="imageCaption">Fonte da imagem — <a href="https://www.unixmen.com/how-to-install-lamp-stack-ubuntu-17-04/" data-href="https://www.unixmen.com/how-to-install-lamp-stack-ubuntu-17-04/" class="markup--anchor markup--figure-anchor" rel="nofollow noopener" target="_blank">https://www.unixmen.com/how-to-install-lamp-stack-ubuntu-17-04/</a></figcaption></figure><p name="9d31" id="9d31" class="graf graf--p graf-after--figure">Olá, pessoal. Beleza?</p><p name="552b" id="552b" class="graf graf--p graf-after--p">Vou mostrar como eu faço para instalar a pilha LAMP no Void Linux. O processo é parecido com o de outras distros, mas muitos podem ter dúvidas, vamos ao que interessa!</p><h4 name="4005" id="4005" class="graf graf--h4 graf-after--p">Instalando os pacotes necessários</h4><pre name="af97" id="af97" class="graf graf--pre graf-after--h4">sudo xbps-install -S php-apache php-mysql apache mariadb dbeaver</pre><p name="8f15" id="8f15" class="graf graf--p graf-after--pre">Reparem que eu instalei o <a href="https://dbeaver.io" data-href="https://dbeaver.io" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">DBeaver</a>, gosto muito desse cliente de bancos de dados.</p><h4 name="c470" id="c470" class="graf graf--h4 graf-after--p">Habilitando os serviços do Apache e do MariaDB e configurando o MariaDB</h4><pre name="245e" id="245e" class="graf graf--pre graf-after--h4">sudo ln -s /etc/sv/apache /var/service/apache<br>sudo ln -s /etc/sv/mysqld /var/service/mysqld</pre><pre name="e334" id="e334" class="graf graf--pre graf-after--pre">mysql_secure_installation</pre><p name="9009" id="9009" class="graf graf--p graf-after--pre">Depois de setar suas configurações do MariaDB, você pode fazer o login:</p><pre name="aa3c" id="aa3c" class="graf graf--pre graf-after--p">mysql -uroot -p</pre><p name="10ee" id="10ee" class="graf graf--p graf-after--pre">Pode testar o Apache no navegador também em <a href="http://localhost" data-href="http://localhost" class="markup--anchor markup--p-anchor" target="_blank">http://localhost</a></p><figure name="6e04" id="6e04" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 612px; max-height: 157px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 25.7%;"></div><img class="graf-image" data-image-id="1*MM_AOSaCl8GPq8kY9ed6IQ.png" data-width="612" data-height="157" src="https://cdn-images-1.medium.com/max/800/1*MM_AOSaCl8GPq8kY9ed6IQ.png"></div><figcaption class="imageCaption">Tela inicial do Apache no Void Linux</figcaption></figure><h4 name="0547" id="0547" class="graf graf--h4 graf-after--figure">Habilitando o módulo do PHP no Apache</h4><p name="8831" id="8831" class="graf graf--p graf-after--h4">Edite o arquivo /etc/apache/httpd.conf:</p><p name="3d01" id="3d01" class="graf graf--p graf-after--p">Comente a linha do módulo mpm_event_module (coloque um # no começo da linha) e descomente a linha do módulo mpm_prefork_module (remova # do começo da linha), vai ficar assim:</p><pre name="cc25" id="cc25" class="graf graf--pre graf-after--p">#LoadModule mpm_event_module modules/mod_mpm_event.so<br>LoadModule mpm_prefork_module modules/mod_mpm_prefork.so</pre><p name="9a57" id="9a57" class="graf graf--p graf-after--pre">No final da seção de LoadModule, coloque as linhas que carregam o módulo do PHP:</p><pre name="33c0" id="33c0" class="graf graf--pre graf-after--p">LoadModule php7_module /usr/libexec/httpd/modules/libphp7.so<br>AddHandler php7-script .php</pre><p name="0178" id="0178" class="graf graf--p graf-after--pre">No final do arquivo, coloque a linha abaixo:</p><pre name="242a" id="242a" class="graf graf--pre graf-after--p">Include /etc/apache/extra/php7_module.conf</pre><p name="3b21" id="3b21" class="graf graf--p graf-after--pre">Reinicie o serviço do Apache:</p><pre name="4ae5" id="4ae5" class="graf graf--pre graf-after--p">sudo sv restart apache</pre><p name="7959" id="7959" class="graf graf--p graf-after--pre">Com isso, o PHP já será interpretado pelo Apache.</p><h4 name="6042" id="6042" class="graf graf--h4 graf-after--p">Configurando o PHP para trabalhar com o MariaDB</h4><p name="6f9a" id="6f9a" class="graf graf--p graf-after--h4">Edite o arquivo /etc/php/php.ini e descomente a linha (remova o ; do início da linha):</p><pre name="7b31" id="7b31" class="graf graf--pre graf-after--p">extension=mysqli</pre><h4 name="1999" id="1999" class="graf graf--h4 graf-after--pre">Instalando o phpMyAdmin</h4><p name="deb3" id="deb3" class="graf graf--p graf-after--h4">Na verdade, o phpMyAdmin não será “instalado”, será baixado do site do desenvolvedor — <a href="https://www.phpmyadmin.net/downloads/" data-href="https://www.phpmyadmin.net/downloads/" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">https://www.phpmyadmin.net/downloads/</a> — e será descompactado e colocado na pasta do Apache.</p><p name="9218" id="9218" class="graf graf--p graf-after--p">Baixe o arquivo (link acima), descompacte, renomeie a pasta para phpmyadmin e copie para a pasta do apache. Use o terminal ou o gerenciador de arquivos (desde que tenha permissões de root).</p><pre name="9cd6" id="9cd6" class="graf graf--pre graf-after--p">sudo cp -r phpmyadmin /srv/www/apache/</pre><p name="b09e" id="b09e" class="graf graf--p graf-after--pre">Abra seu navegador na URL <a href="http://localhost/phpmyadmin" data-href="http://localhost/phpmyadmin" class="markup--anchor markup--p-anchor" target="_blank">http://localhost/phpmyadmin</a></p><h4 name="3562" id="3562" class="graf graf--h4 graf-after--p">Vídeo (veja na prática):</h4><figure name="d94c" id="d94c" class="graf graf--figure graf--iframe graf-after--h4"></figure><h4 name="e942" id="e942" class="graf graf--h4 graf-after--figure">Conclusão</h4><p name="3f77" id="3f77" class="graf graf--p graf-after--h4">Após seguir os passos acima, seu ambiente de desenvolvimento com a pilha LAMP deverá estar funcionando. A diferença entre a instalação que fiz no Void das outras distrivuições Linux que uso é que o phpMyAdmin não é empacotado nos repositórios do Void, nem no void-packages (xbps-src). Mas não importa, pois o phpMyAdmin é um “site” que só precisa ser executado pelo servidor web + php.</p><p name="ec49" id="ec49" class="graf graf--p graf-after--p">Se quiser ver como eu uso o phpMyAdmin com o servidor embutido do PHP, sem Apache ou Nginx, veja o outro <a href="https://medium.com/@leandroembu/phpmyadmin-servidor-embutido-do-php-a97c51c7c97f" data-href="https://medium.com/@leandroembu/phpmyadmin-servidor-embutido-do-php-a97c51c7c97f" class="markup--anchor markup--p-anchor" target="_blank">artigo</a>.</p><p name="f14c" id="f14c" class="graf graf--p graf-after--p graf--trailing">Um abraço e até a próxima, pessoal!</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@leandroembu" class="p-author h-card">Leandro Ramos</a> on <a href="https://medium.com/p/8f194611df30"><time class="dt-published" datetime="2019-01-31T01:23:48.051Z">January 31, 2019</time></a>.</p><p><a href="https://medium.com/@leandroembu/lamp-no-void-linux-8f194611df30" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 12, 2019.</p></footer></article></body></html>

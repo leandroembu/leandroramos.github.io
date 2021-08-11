@@ -1,8 +1,0 @@
-# specify main menu items here
-
-- text: Blog
-  url: /
-- text: Sobre
-  url: /about
-- text: Contato
-  url: /contact
